@@ -1,70 +1,23 @@
 <template>
 	<el-header class="toolbar">
 		<div v-if="undoRedo">
-			<el-button
-				link
-				:icon="RefreshLeft"
-				:disabled="historySteps.index == 0"
-				@click="$emit('undo')"
-				>撤销</el-button
-			>
-			<el-button
-				link
-				:icon="RefreshRight"
-				:disabled="historySteps.index == historySteps.steps.length - 1"
-				@click="$emit('redo')"
-				>重做</el-button
-			>
+			<el-button link :icon="RefreshLeft" :disabled="historySteps.index == 0" @click="$emit('undo')">撤销</el-button>
+			<el-button link :icon="RefreshRight" :disabled="historySteps.index == historySteps.steps.length - 1"
+				@click="$emit('redo')">重做</el-button>
 		</div>
 		<div style="display: flex; align-items: center; font-weight: bold">
 			<iframe
-				src="https://ghbtns.com/github-btn.html?user=sscfaith&repo=avue-form-design&type=star&count=true"
-				frameborder="0"
-				scrolling="0"
-				width="100"
-				height="20"
-				title="GitHub"
-				style="margin-left: 10px"
-				v-if="showGithubStar"
-			></iframe>
+				src="https://ghbtns.com/github-btn.html?user=sscfaith&repo=avue-form-desiglabelPositionn&type=star&count=true"
+				frameborder="0" scrolling="0" width="100" height="20" title="GitHub" style="margin-left: 10px"
+				v-if="showGithubStar"></iframe>
 			<slot name="toolbar-left"></slot>
-			<el-button
-				v-if="toolbar.includes('avue-doc')"
-				link
-				:icon="Document"
-				@click="handleAvueDoc"
-				>Avue文档</el-button
-			>
-			<el-button
-				v-if="toolbar.includes('import')"
-				link
-				:icon="Upload"
-				@click="$emit('import')"
-				>导入JSON</el-button
-			>
-			<el-button
-				v-if="toolbar.includes('generate')"
-				link
-				:icon="Download"
-				@click="$emit('generate')"
-				>生成JSON</el-button
-			>
-			<el-button
-				v-if="toolbar.includes('preview')"
-				link
-				:icon="View"
-				@click="$emit('preview')"
-				>预览</el-button
-			>
-			<el-button
-				v-if="toolbar.includes('clear')"
-				class="danger"
-				link
-				:icon="Delete"
-				@click="$emit('clear')"
-				>清空</el-button
-			>
-			<slot name="toolbar-right">right</slot>
+			<el-button v-if="toolbar.includes('import')" link :icon="Upload" @click="$emit('import')">导入JSON</el-button>
+			<el-button v-if="toolbar.includes('generate')" link :icon="Download" @click="$emit('generate')">生成JSON</el-button>
+			<el-button v-if="toolbar.includes('preview')" link :icon="View" @click="$emit('preview')">预览</el-button>
+			<el-button link type="primary" @click="$emit('save')">保 存</el-button>
+			<el-button v-if="toolbar.includes('clear')" class="danger" link :icon="Delete"
+				@click="$emit('clear')">清空</el-button>
+			<slot name="toolbar-right"></slot>
 		</div>
 	</el-header>
 </template>
@@ -96,7 +49,7 @@ defineProps({
 		// 工具栏按钮
 		type: Array,
 		default: () => {
-			return ["import", "generate", "preview", "clear"];
+			return ["import", "generate", "preview", "clear", "save"];
 		},
 	},
 	historySteps: {
@@ -112,12 +65,8 @@ defineProps({
 	},
 });
 
-defineEmits(["undo", "redo", "import", "generate", "preview", "clear"]);
+defineEmits(["undo", "redo", "import", "generate", "preview", "clear", "save"]);
 
-const handleAvueDoc = () => {
-	// Avue文档链接
-	window.open("https://avuejs.com/form/form.html", "_blank");
-};
 </script>
 
 <style lang="scss" scoped>

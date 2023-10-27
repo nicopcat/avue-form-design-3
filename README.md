@@ -1,12 +1,8 @@
 ## 简介
-Vue3.0版本，因Avue还存在一些bug，请慎重使用。
+主要修复了`@submit`事件未生效的问题。
 
-本项目是一款基于 <a href="https://avuejs.com/" target="_blank">Avue</a> 的表单设计器，拖拽式操作让你快速构建一个表单。
-
-:tada: 基于Bladex的工作流插件已上市。[授权地址](https://bladex.vip/#/market/flow)<br/>
-[表单设计器预览地址](https://form.nutflow.vip)<br>
-[流程设计器预览地址](https://bpmn.nutflow.vip)<br>
-[工作流插件预览地址](https://demo1.nutflow.vip)
+3.0.10 
+增加【保存】按钮，直接获取JSON data.
 
 ## 文档及demo项目
 [Wiki](../../wikis)

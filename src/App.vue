@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <avue-form-design style="height: 100vh;"
-                      :options="options"
-                      @submit="handleSubmit"
-                      :custom-fields="customFields"></avue-form-design>
+    <avue-form-design style="height: 100vh;" :options="options" @submit="handleSubmit"
+      :custom-fields="customFields"></avue-form-design>
   </div>
 </template>
 
@@ -146,6 +144,7 @@ export default {
   min-height: 100%;
   height: 100%;
 }
+
 body {
   margin: 0;
 }

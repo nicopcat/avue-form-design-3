@@ -3,58 +3,40 @@
 		<el-container>
 			<el-aside :width="leftAsideWidth">
 				<!-- 左侧字段区 -->
-				<afd-field
-					:include-fields="includeFields"
-					:custom-fields="customFields"
-					@field-click="handleFieldClick"
-				></afd-field>
+				<afd-field :include-fields="includeFields" :custom-fields="customFields"
+					@field-click="handleFieldClick"></afd-field>
 			</el-aside>
 			<el-container direction="vertical">
 				<!-- 头部工具栏 -->
-				<afd-toolbar
-					:toolbar="toolbar"
-					:undo-redo="undoRedo"
-					:show-github-star="showGithubStar"
-					:history-steps="historySteps"
-					@undo="widget.option = handleUndo()"
-					@redo="widget.option = handleRedo()"
-					@import="$refs.importDrawer.show()"
-					@generate="handleGenerateJson"
-					@preview="handlePreview"
-					@clear="handleClear"
-				>
-					<template #toolbar-left><slot name="toolbar-left"></slot> </template>
-					<template v-slot:toolbar-right
-						><slot name="toolbar-right"></slot
-					></template>
+				<afd-toolbar :toolbar="toolbar" :undo-redo="undoRedo" :show-github-star="showGithubStar"
+					:history-steps="historySteps" @undo="widget.option = handleUndo()" @redo="widget.option = handleRedo()"
+					@import="$refs.importDrawer.show()" @generate="handleGenerateJson" @preview="handlePreview" @clear="handleClear"
+					@save="handleSave">
+					<template #toolbar-left>
+						<slot name="toolbar-left"></slot>
+					</template>
+					<template v-slot:toolbar-right>
+						<slot name="toolbar-right"></slot>
+
+					</template>
 				</afd-toolbar>
 				<!-- 主设计区 -->
-				<afd-widget
-					ref="widgetForm"
-					:data="widget.option"
-					v-model:select="widget.select"
-					@change="handleHistoryChange(widget.option)"
-				></afd-widget>
+				<afd-widget ref="widgetForm" :data="widget.option" v-model:select="widget.select"
+					@change="handleHistoryChange(widget.option)"></afd-widget>
 			</el-container>
 			<el-aside :width="rightAsideWidth">
 				<!-- 右侧设计区 -->
-				<afd-config
-					:form="widget.option"
-					:widget-select="widget.select"
-					:default-values="defaultValues"
-				></afd-config>
+				<afd-config :form="widget.option" :widget-select="widget.select" :default-values="defaultValues"></afd-config>
 			</el-aside>
 		</el-container>
 
 		<!-- 导入JSON弹窗 -->
-		<afd-import-drawer
-			ref="importDrawer"
-			@submit="handleImportJson"
-		></afd-import-drawer>
+		<afd-import-drawer ref="importDrawer" @submit="handleImportJson"></afd-import-drawer>
 		<!-- 生成JSON弹窗 -->
-		<afd-generate-drawer ref="generateDrawer"></afd-generate-drawer>
+		<afd-generate-drawer ref="generateDrawer" @submitChild="handleSubmitChild"></afd-generate-drawer>
 		<!-- 预览弹窗 -->
 		<afd-preview-drawer ref="previewDrawer"></afd-preview-drawer>
+
 	</div>
 </template>
 
@@ -197,6 +179,9 @@ export default {
 		};
 	},
 	methods: {
+		handleSubmitChild(data) {
+			this.$emit('submit', data)
+		},
 		// 初始化数据
 		handleLoadStorage() {
 			let option = this.deepClone(this.options);
@@ -276,6 +261,7 @@ export default {
 		// 生成JSON
 		handleGenerateJson() {
 			this.transformToAvueOptions(this.widget.option).then((data) => {
+				console.log(data);
 				this.$refs.generateDrawer.show(data);
 			});
 		},
@@ -301,7 +287,7 @@ export default {
 						this.widget.select = {};
 						this.handleHistoryChange(this.widget.option);
 					})
-					.catch(() => {});
+					.catch(() => { });
 			} else this.$message.error("没有需要清空的内容");
 		},
 		async getData(type = "json", option = {}) {
@@ -334,8 +320,14 @@ export default {
 				}
 			}
 		},
+		handleSave() {
+			this.transformToAvueOptions(this.widget.option).then((data) => {
+				this.$emit('submit', data)
+			});
+		},
 	},
 };
+
 </script>
 
 <style lang="scss">
