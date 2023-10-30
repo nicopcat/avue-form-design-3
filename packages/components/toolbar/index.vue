@@ -14,9 +14,8 @@
 			<el-button v-if="toolbar.includes('import')" link :icon="Upload" @click="$emit('import')">导入JSON</el-button>
 			<el-button v-if="toolbar.includes('generate')" link :icon="Download" @click="$emit('generate')">生成JSON</el-button>
 			<el-button v-if="toolbar.includes('preview')" link :icon="View" @click="$emit('preview')">预览</el-button>
-			<el-button link type="primary" @click="$emit('save')">保 存</el-button>
-			<el-button v-if="toolbar.includes('clear')" class="danger" link :icon="Delete"
-				@click="$emit('clear')">清空</el-button>
+			<el-button v-if="toolbar.includes('save')" link type="primary" @click="$emit('save')">保存</el-button>
+			<el-button v-if="toolbar.includes('clear')" class="danger" link :icon="Delete" @click="$emit('clear')">清空</el-button>
 			<slot name="toolbar-right"></slot>
 		</div>
 	</el-header>

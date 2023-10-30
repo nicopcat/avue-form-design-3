@@ -18,7 +18,7 @@ $ npm i element-plus
 @smallwei/avue 3.0.0+
 
 ```sh
-$ npm i @smallwei/avue@next
+$ npm i avue-form-design-3
 ```
 
 或自行引入cdn
@@ -28,24 +28,11 @@ $ npm i @smallwei/avue@next
 ### 组件
 
 ```sh
-$ npm i @sscfaith/avue-form-design@next
+$ npm i avue-form-design-3
 或
-$ yarn add @sscfaith/avue-form-design@next
+$ yarn add avue-form-design-3
 ```
 
-### 源码
-
-<a href="https://github.com/sscfaith/avue-form-design" target="_blank">github</a> or
-<a href="https://gitee.com/sscgh/avue-from-design" target="_blank">gitee</a>
-
-```sh
-$ yarn
-$ yarn serve
-```
-
-### html
-
-详见examples
 
 ## 使用
 
@@ -56,10 +43,7 @@ Vue.use(AvueFormDesign)
 ```
 
 ```
-<avue-form-design style="height: 86vh;"
-                  :options="options"
-                  storage
-                  @submit="handleSubmit"></avue-form-design>
+<avue-form-design style="height: 86vh;"   :options="options" storage @submit="handleSubmit"></avue-form-design>
 ```
 
 ### 属性
@@ -124,25 +108,4 @@ import AvueUeditor from 'avue-plugin-ueditor'
 
 Vue.use(AvueUeditor)
 ```
-
-## 打包
-
-### 组件
-
-```sh
-$ yarn lib
-```
-
-### 源码
-
-```sh
-$ yarn build
-```
-
-## 捐赠
-如果你觉得本项目帮助到你的话，可以给作者买杯咖啡。
-<img src="https://form.beta.kim/donate.png">
-
-## License
-
-<a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a>
+ 

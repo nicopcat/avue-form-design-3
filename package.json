@@ -1,7 +1,7 @@
 {
   "name": "avue-form-design-3",
   "author": "Nekolas07",
-  "version": "3.0.11",
+  "version": "3.0.14",
   "main": "lib/index.umd.js",
   "files": [
     "lib"
@@ -37,7 +37,7 @@
     "vue": "^3.2.47"
   },
   "license": "MIT",
-  "description": "Vue3.0版本，因Avue还存在一些bug，请慎重使用。",
+  "description": "avue-form-design",
   "bugs": {
     "url": "https://github.com/sscfaith/avue-form-design/issues"
   },

@@ -10,8 +10,7 @@
 				<!-- 头部工具栏 -->
 				<afd-toolbar :toolbar="toolbar" :undo-redo="undoRedo" :show-github-star="showGithubStar"
 					:history-steps="historySteps" @undo="widget.option = handleUndo()" @redo="widget.option = handleRedo()"
-					@import="$refs.importDrawer.show()" @generate="handleGenerateJson" @preview="handlePreview" @clear="handleClear"
-					@save="handleSave">
+					@import="$refs.importDrawer.show()" @generate="handleGenerateJson" @preview="handlePreview" @clear="handleClear" @save="handleSave">
 					<template #toolbar-left>
 						<slot name="toolbar-left"></slot>
 					</template>
